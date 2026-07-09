@@ -1,0 +1,60 @@
+-P03
+"Translate the following word into English. respect the original formatting and return only the translated text without any additions. This is the word to translate to english: "  + text
+
+-P21
+"Translate the following set of words into English, respecting the original formatting and returning only the translated text without any additions. The word to be translated is:" + text
+
+
+-P30
+"Translate the following set of words into English, respecting the original formatting and returning only the translated text without any additions. The word to be translated is:" + text
+
+-P31
+"Translate the following set of words into English, respecting the original formatting and returning only the translated text without any additions. The word to be translated is:"+ text
+
+
+
+-P07
+"Translate the following word into English . Respect the original formatting and return only the translated text without any additions. If there are two concepts and a conjunction replace it with 'And' Else if there are two concepts and a disjunction replace it with 'Or'.This is the word to translate to english If the text is already in English, don't do anything :"+ text
+
+
+
+
+
+-P10
+"In the context of " + nombre + " Determine if the following concepts are DISJOINT (They are mutually exclusive concepts that do not share any common ground, so it is impossible for an element to belong to both at the same time) or NOT. Return only yes or no. The concepts are:" + classesName
+
+
+
+-P12
+"Task: Determine if two ontology properties are strictly equivalent.Answer only yes or no\n" +
+                                    "Properties: givenName and firstName\n" +
+                                    "Equivalent: yes\n" +
+                                    "Properties: hasPart and isPartOf\n" +
+                                    "Equivalent: no\n" +
+                                    "Properties: author and writtenBy\n" +
+                                    "Equivalent: yes\n" +
+                                    "Properties: startsAt and endsAt\n" +
+                                    "Equivalent: no\n" +
+                                    "Properties: " + palabras + "\n" +
+                                    "Equivalent:";
+
+
+-P13
+"Task: Determine if two ontology object properties are strict inverse relationships of each other (like owl:inverseOf).Answer only yes or no\n" +
+                "Properties: hasPart and isPartOf\n" +
+                "Inverse: yes\n" +
+                "Properties: givenName and firstName\n" +
+                "Inverse: no\n" +
+                "Properties: hasMember and isMemberOf\n" +
+                "Inverse: yes\n" +
+                "Properties: startsAt and endsAt\n" +
+                "Inverse: no\n" +
+                "Properties: creates and isCreatedBy\n" +
+                "Inverse: yes\n" +
+                "Properties: " + palabras + "\n" +
+                "Inverse:";
+
+
+
+
+

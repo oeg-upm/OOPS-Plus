@@ -1,0 +1,25 @@
+-P01
+"Task: Determine if a word is polysemous (has completely distinct meanings). Output strictly 'Yes' or 'No'.\n" +
+                "Word: bank | C1: financial institution | C2: river edge | Answer: Yes\n" +
+                "Word: dog | C1: poodle | C2: bulldog | Answer: No\n" +
+                "Word: " + clase + " | C1: " + s1 + " | C2: " + s2 + " | Answer:";
+
+
+-P14
+"Is it possible to have individuals that do not belong to class " + classA
+                + " not to " + prop + " " + classB + " ? Answer strictly 'Yes' or 'No'."
+
+
+-P17
+" You are a strict logical classifier. Your only task is to determine if a specific 'Class' in an ontology is actually a unique real-world individual. "
+                        + "Rule: If the class represents a unique, specific entity that cannot have instances of its own, answer YES. If it represents a general category that can have multiple instances, answer NO. "
+                        + "YOU MUST ANSWER ONLY 'YES' OR 'NO'. DO NOT ADD ANY OTHER WORDS. "
+                        + "Examples: Class: 'Madrid' | Parent Class: 'City' Output: YES Class: 'European_City' | Parent Class: 'City' Output: NO Class: 'Kilimanjaro' | Parent Class: 'Mountain' Output: YES Class: 'Karst_Cave' | Parent Class: 'Cave' "
+                        + "Output: NO Class:" + subclases + " | Parent Class: " + clase + " Output:"
+
+
+-P18
+DOMAIN
+" Task: Determine if the class " + supClass  + " could serve as subject of the property " + property + ".Output strictly 'Yes' or 'No'."
+RANGE
+" Task: Determine if the class " + supClass + " could serve as object of the property " + property + ".Output strictly 'Yes' or 'No'."
