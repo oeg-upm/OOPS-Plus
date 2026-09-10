@@ -140,14 +140,21 @@ public class P10 implements Checker {
             String nombre = subClases.get(j).getLocalName();
             System.out.println(nombre);
             String respuesta = askLLM(nombre, subClassesList);
-            System.out.println("P10 Respuesta" + respuesta);
+            respuesta = respuesta.replaceAll("\\W", "").replaceAll("-", "").replaceAll("\\.", "").replaceAll("_", "")
+                    .toLowerCase();
+            System.out.println("P10 Respuesta " + respuesta);
             if (respuesta.equals("yes")) {
-                context.addResult(PITFALL_INFO, subClassesList);//revisar como se devuelve esto
+                System.out.println("HOLA");
+                for (int k = 0; k < subClassesList.size(); k++) {
+                    System.out.println(subClassesList.get(k));
+                    context.addResult(PITFALL_INFO, subClassesList.get(k));//revisar como se devuelve esto
+
+                }
             }
         }
 
         //ESTE ES EL FINAL
 
-        context.addResult(PITFALL_INFO, Collections.emptySet());
+        // context.addResult(PITFALL_INFO, Collections.emptySet());
     }
 }
