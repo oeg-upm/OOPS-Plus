@@ -142,9 +142,7 @@ public class P10 implements Checker {
             String respuesta = askLLM(nombre, subClassesList);
             respuesta = respuesta.replaceAll("\\W", "").replaceAll("-", "").replaceAll("\\.", "").replaceAll("_", "")
                     .toLowerCase();
-            System.out.println("P10 Respuesta " + respuesta);
             if (respuesta.equals("yes")) {
-                System.out.println("HOLA");
                 for (int k = 0; k < subClassesList.size(); k++) {
                     System.out.println(subClassesList.get(k));
                     context.addResult(PITFALL_INFO, subClassesList.get(k));//revisar como se devuelve esto
