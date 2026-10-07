@@ -21,7 +21,6 @@ import es.upm.fi.oeg.oops.PitfallId;
 import es.upm.fi.oeg.oops.PitfallInfo;
 import es.upm.fi.oeg.oops.PitfallInfo.AccompPer;
 import es.upm.fi.oeg.oops.RuleScope;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,8 +56,7 @@ public class P10 implements Checker {
     }
     public static String askLLM(String nombre, List<OntClass> subClassesList) {
         // Configuramos el modelo local
-        OllamaChatModel model = OllamaChatModel.builder().baseUrl(LLM_IP).modelName(LLM_MODEL)
-                .timeout(Duration.ofMinutes(10)).build();
+        OllamaChatModel model = OllamaChatModel.builder().baseUrl(LLM_IP).modelName(LLM_MODEL).build();
         String classesName = "";
         for (int i = 0; i < subClassesList.size(); i++) {
             classesName = classesName + ", " + subClassesList.get(i).getLocalName();
@@ -122,9 +120,8 @@ public class P10 implements Checker {
             }
         }
         //tecnicamente aqui solo se llega si no se ha detectacion disjoint en ningun punto
-        //SE VA A AÑADIR AQUI LA FUNCION EXTRA PERO HAY Q COMPROBAR CON PRINTS
         List<OntClass> classesList = model.listNamedClasses().toList();
-        List<OntClass> subClases = new ArrayList<OntClass>(); //CAMBIAR NOMBRE
+        List<OntClass> subClases = new ArrayList<OntClass>(); 
         // System.out.println("TAMAÑO LISTA DE CLASES " + classesList.size());
         //se buscan las clases raiz para buscar sus subclases
         for (int i = 0; i < classesList.size(); i++) {
@@ -142,14 +139,20 @@ public class P10 implements Checker {
             String nombre = subClases.get(j).getLocalName();
             System.out.println(nombre);
             String respuesta = askLLM(nombre, subClassesList);
-            System.out.println("P10 Respuesta" + respuesta);
-            if (respuesta.equals("yes")) {
-                context.addResult(PITFALL_INFO, subClassesList);//revisar como se devuelve esto
+            respuesta = respuesta.replaceAll("\\W", "").replaceAll("-", "").replaceAll("\\.", "").replaceAll("_", "")
+                    .toLowerCase();
+            System.out.println("P10 Respuesta " + respuesta);
+            if (respuesta.equals("yes")) {            
+                for (int k = 0; k < subClassesList.size(); k++) {
+                    System.out.println(subClassesList.get(k));
+                    context.addResult(PITFALL_INFO, subClassesList.get(k));
+
+                }
             }
         }
 
         //ESTE ES EL FINAL
 
-        context.addResult(PITFALL_INFO, Collections.emptySet());
+        // context.addResult(PITFALL_INFO, Collections.emptySet());
     }
 }
